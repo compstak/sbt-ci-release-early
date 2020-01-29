@@ -3,6 +3,14 @@ organization := "io.shiftleft"
 sbtPlugin := true
 enablePlugins(GitVersioning)
 
+
+credentials += Credentials(
+  "Sonatype Nexus Repository Manager",
+  "nexus.compstak.com",
+  sys.env.get("NEXUS_USERNAME").getOrElse(""),
+  sys.env.get("NEXUS_PASSWORD").getOrElse("")
+)
+
 scalaVersion := "2.12.10"
 libraryDependencies ++= List(
   "org.eclipse.jgit" % "org.eclipse.jgit" % "5.4.3.201909031940-r",
@@ -33,7 +41,7 @@ developers := List(
     url("https://michaelpollmeier.com")
   )
 )
-resolvers += Resolver.sonatypeRepo("releases")
+resolvers += Resolver.sonatypeRepo("snapshots")
 
-publishTo := sonatypePublishToBundle.value
+publishTo := Some("Sonatype Nexus Repository Manager".at("https://nexus.compstak.com/repository/sbt-releases"))
 Global/useGpgPinentry := true
