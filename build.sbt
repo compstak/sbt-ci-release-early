@@ -1,5 +1,5 @@
 moduleName := "sbt-ci-release-early"
-organization := "io.shiftleft"
+organization := "compstak"
 sbtPlugin := true
 enablePlugins(GitVersioning)
 
